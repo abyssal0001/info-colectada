@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recopilación de Datos</title>
+</head>
+<body>
+  <h2>Verificación de datos</h2>
+  <p id="info"></p>
+
+  <script>
+    // Batería
+    navigator.getBattery().then(function(battery) {
+      document.getElementById("info").innerHTML += "Nivel de batería: " + (battery.level * 100) + "%<br>";
+    });
+
+    // Ubicación
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById("info").innerHTML += "Ubicación aproximada: Lat " + position.coords.latitude + ", Long " + position.coords.longitude + "<br>";
+      });
+    } else {
+      document.getElementById("info").innerHTML += "Geolocalización no disponible<br>";
+    }
+
+    // Información del navegador
+    document.getElementById("info").innerHTML += "Navegador: " + navigator.userAgent + "<br>";
+  </script>
+</body>
+</html>
